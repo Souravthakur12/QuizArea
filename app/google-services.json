@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "468148534365",
+    "project_id": "lsr-8797c",
+    "storage_bucket": "lsr-8797c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468148534365:android:34052a5a3824a551c4e1b4",
+        "android_client_info": {
+          "package_name": "apps.develop.quizarea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468148534365-nv5ucsk9eklomkl35cg04loahn53f60p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV84rBRZ4UlQsMGWOTYo6K2sCHpZXY1yM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468148534365-nv5ucsk9eklomkl35cg04loahn53f60p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
