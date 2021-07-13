@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,16 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePage extends AppCompatActivity {
     ChipNavigationBar chipNavigationBar;
     RecyclerView recView;
     Current_RecyclerAdapter adapter;
 
+
+    CircleImageView circleImageView;
+    TextView user_name;
     ShimmerFrameLayout shimmerFrameLayout;
     LinearLayout shimmerlayout;
+
+    GoogleApiClient googleApiClient;
+    GoogleSignInOptions sign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +45,15 @@ public class HomePage extends AppCompatActivity {
         shimmerlayout = findViewById(R.id.shimmer_layout_pdf);
 
 */
+
+        circleImageView = findViewById(R.id.circleprofileiv);
+        user_name = findViewById(R.id.user_name);
+
+
+
+
+
+
         recView = (RecyclerView) findViewById(R.id.rv_storyf4);
         recView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);

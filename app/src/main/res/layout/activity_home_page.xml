@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
+        android:id="@+id/circleprofileiv"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
@@ -42,13 +42,14 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/indigo_daisy"
         android:text="Welcome ,Sourav"
         android:textSize="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/circleImageView"
+        app:layout_constraintEnd_toStartOf="@+id/circleprofileiv"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="@+id/view" />
@@ -288,7 +289,7 @@
 
     <LinearLayout
         android:id="@+id/linearlayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
@@ -303,8 +304,6 @@
 
 
 
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -313,17 +312,7 @@
             android:id="@+id/rv_storyf4"/>
 
 
-
-
-
-
-
-
-
-
     </LinearLayout>
-
-
 
 
  <!--   <LinearLayout
@@ -395,9 +384,6 @@
 
 
     </LinearLayout>-->
-
-
-
 
 
 

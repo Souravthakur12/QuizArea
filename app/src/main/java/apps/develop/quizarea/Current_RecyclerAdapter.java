@@ -1,6 +1,5 @@
 package apps.develop.quizarea;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class Current_RecyclerAdapter extends FirebaseRecyclerAdapter<LatestData, Current_RecyclerAdapter.MyViewHolder> {
 
@@ -35,14 +31,14 @@ public class Current_RecyclerAdapter extends FirebaseRecyclerAdapter<LatestData,
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull @org.jetbrains.annotations.NotNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.current_topics,parent,false);
-        return  new MyViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.current_topics, parent, false);
+        return new MyViewHolder(view);
     }
 
 
     @Override
     protected void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position, @NonNull @NotNull LatestData model) {
-holder.txt.setText(model.getTitle());
+        holder.txt.setText(model.getTitle());
         Glide.with(holder.img.getContext()).load(model.getImage()).into(holder.img);
     }
 
