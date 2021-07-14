@@ -3,7 +3,9 @@ package apps.develop.quizarea;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn_register;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+
+    Float x1,x2,y1,y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,5 +60,35 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                y1 = event.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                y2 = event.getY();
+                if(x1 < x2){
+                    Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(i);
+                }else if(x1 > x2){
+
+                }
+                break;
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        finishAffinity();
+        super.onBackPressed();
     }
 }

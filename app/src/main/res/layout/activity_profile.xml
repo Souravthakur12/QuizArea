@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Profile"
     android:background="@color/secondary_text">
-
+<Button
+    android:id="@+id/btnLogout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="logout"/>
 
     <TextView
 
