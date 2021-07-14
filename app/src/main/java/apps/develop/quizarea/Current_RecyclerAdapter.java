@@ -11,40 +11,43 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
-
-public class Current_RecyclerAdapter extends FirebaseRecyclerAdapter<LatestData, Current_RecyclerAdapter.MyViewHolder> {
 
 
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public Current_RecyclerAdapter(@NonNull @NotNull FirebaseRecyclerOptions options) {
-        super(options);
+public class Current_RecyclerAdapter extends RecyclerView.Adapter<Current_RecyclerAdapter.MyViewHolder> {
+ArrayList<LatestData> list;
+Context context;
+
+    public Current_RecyclerAdapter(ArrayList<LatestData> list, Context context) {
+        this.list = list;
+        this.context = context;
     }
+
+
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull @org.jetbrains.annotations.NotNull ViewGroup parent, int viewType) {
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.current_topics,parent,false);
+        View view=LayoutInflater.from(context).inflate(R.layout.current_topics,parent,false);
         return  new MyViewHolder(view);
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position) {
+        LatestData data= list.get(position);
+        holder.txt.setText(data.getTitle());
+        Glide.with(context).load(data.getImage()).into(holder.img);
+    }
 
     @Override
-    protected void onBindViewHolder(@NonNull @NotNull MyViewHolder holder, int position, @NonNull @NotNull LatestData model) {
-holder.txt.setText(model.getTitle());
-        Glide.with(holder.img.getContext()).load(model.getImage()).into(holder.img);
+    public int getItemCount() {
+        return list.size();
     }
+
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
