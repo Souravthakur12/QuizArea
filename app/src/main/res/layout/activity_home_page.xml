@@ -46,9 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:fontFamily="@font/indigo_daisy"
+        android:fontFamily="@font/roboto_regular"
         android:text="Welcome ,Sourav"
-        android:textSize="40dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toStartOf="@+id/circleprofileiv"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="@+id/view"
@@ -302,14 +302,12 @@
         app:layout_constraintVertical_bias="0.0">
 
 
-
-
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_storyf4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:orientation="horizontal"
-            android:id="@+id/rv_storyf4"/>
+            android:orientation="horizontal" />
 
 
     </LinearLayout>

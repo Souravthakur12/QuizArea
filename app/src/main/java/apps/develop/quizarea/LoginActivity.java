@@ -38,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     Float x1,x2,y1,y2;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +51,12 @@ public class LoginActivity extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
 
 
 
@@ -148,6 +152,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Toast.makeText(LoginActivity.this, "Sign successfull", Toast.LENGTH_SHORT).show();
                             updateUI(user);
+                            finish();
 
 
                         } else {
@@ -167,6 +172,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        super.onBackPressed();
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -177,11 +189,5 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), HomePage.class);
             startActivity(intent);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        finishAffinity();
-        super.onBackPressed();
     }
 }

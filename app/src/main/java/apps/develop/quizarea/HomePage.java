@@ -1,9 +1,10 @@
 package apps.develop.quizarea;
 
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -11,10 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
@@ -24,8 +30,12 @@ public class HomePage extends AppCompatActivity {
     ChipNavigationBar chipNavigationBar;
     RecyclerView recView;
     Current_RecyclerAdapter adapter;
+    Button btnLogout;
 
+    CircleImageView circleprofileiv;
+    TextView username;
 
+    FirebaseAuth firebaseAuth;
     CircleImageView circleImageView;
     TextView user_name;
     ShimmerFrameLayout shimmerFrameLayout;
@@ -39,6 +49,11 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home_page);
+        username=findViewById(R.id.user_name);
+        circleprofileiv=findViewById(R.id.circleprofileiv);
+        btnLogout=findViewById(R.id.btnLogout);
+        firebaseAuth=FirebaseAuth.getInstance();
+        checkUser();
 
 
      /*   shimmerFrameLayout = findViewById(R.id.shimmer_view_container);
@@ -68,6 +83,25 @@ public class HomePage extends AppCompatActivity {
         recView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
+    }
+
+    private void checkUser() {
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        if(firebaseUser==null){
+            startActivity(new Intent(
+            HomePage.this,LoginActivity.class));
+        }
+        else{
+            GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
+
+        /*    user_name.setText(account.getDisplayName());*/
+            Glide.with(this).load(account.getPhotoUrl()).into(circleprofileiv);
+
+            String displayName=firebaseUser.getDisplayName();
+
+            username.setText("Hi "+displayName);
+
+        }
     }
 
 
