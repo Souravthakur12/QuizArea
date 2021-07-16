@@ -2,12 +2,15 @@ package apps.develop.quizarea;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -18,6 +21,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -28,6 +32,9 @@ public class Profile extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
+    LinearLayout linearLayout;
+    MaterialCardView cardView;
+
     GoogleSignInClient mGoogleSignInClient;
 
 
@@ -37,6 +44,9 @@ public class Profile extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_profile);
         firebaseAuth=FirebaseAuth.getInstance();
+
+        linearLayout = findViewById(R.id.expandable_view);
+        cardView = findViewById(R.id.card);
 
 
 
@@ -60,7 +70,7 @@ public class Profile extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             FirebaseAuth.getInstance().signOut(); // very important if you are using firebase.
-                            Intent login_intent = new Intent(getApplicationContext(),LoginActivity.class);
+                            Intent login_intent = new Intent(Profile.this,LoginActivity.class);
                             login_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK); // clear previous task (optional)
                             startActivity(login_intent);
                         }
@@ -129,5 +139,21 @@ public class Profile extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         finishAffinity();
+    }
+
+    public void showmore(View view) {
+
+        if (linearLayout.getVisibility() == View.GONE)
+        {
+            TransitionManager.beginDelayedTransition(cardView,new AutoTransition());
+            linearLayout.setVisibility(View.VISIBLE);
+        }
+        else {
+            TransitionManager.beginDelayedTransition(cardView,new AutoTransition());
+            linearLayout.setVisibility(View.GONE);
+
+        }
+
+
     }
 }

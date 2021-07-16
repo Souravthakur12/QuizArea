@@ -1,4 +1,4 @@
-package apps.develop.quizarea;
+package apps.develop.quizarea.Model;
 
 public class LatestData {
     String image;

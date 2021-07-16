@@ -13,19 +13,29 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+import apps.develop.quizarea.Adapter.Current_RecyclerAdapter;
+import apps.develop.quizarea.Adapter.SliderAdapter;
+import apps.develop.quizarea.Model.LatestData;
+
 public class HomePage extends AppCompatActivity {
+
+    SliderView sliderView;
+    int[] images ={R.drawable.quiz3,
+    R.drawable.quiz,R.drawable.quiz4,R.drawable.quiz1};
     ChipNavigationBar chipNavigationBar;
     RecyclerView recView;
     Current_RecyclerAdapter adapter;
@@ -34,15 +44,56 @@ public class HomePage extends AppCompatActivity {
     ShimmerFrameLayout shimmerFrameLayout;
     LinearLayout shimmerlayout;
 
+    LinearLayout cat1,cat2,cat3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home_page);
         db = FirebaseDatabase.getInstance().getReference().child("Images");
+
+        sliderView = findViewById(R.id.slider);
         list = new ArrayList<>();
         shimmerFrameLayout = findViewById(R.id.shimmer_view_container);
         shimmerlayout = findViewById(R.id.linear_shimmer);
+
+
+        SliderAdapter sliderAdapter = new SliderAdapter(images);
+
+        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+        sliderView.startAutoCycle();
+
+        cat1 = findViewById(R.id.cat1);
+        cat2 = findViewById(R.id.cat2);
+        cat3 = findViewById(R.id.cat3);
+
+        cat1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this,Category1.class);
+                startActivity(intent);
+            }
+        });
+
+        cat2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(HomePage.this,Category2.class);
+                startActivity(intent1);
+            }
+        });
+
+
+        cat3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(HomePage.this,Category3.class);
+                startActivity(intent2);
+            }
+        });
 
         recView = (RecyclerView) findViewById(R.id.rv_storyf4);
         recView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

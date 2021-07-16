@@ -5,21 +5,148 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Profile"
-    android:background="@color/secondary_text">
+    android:background="@color/white">
 <Button
     android:id="@+id/btnLogout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="logout"/>
+    android:text="logout" />
 
-    <TextView
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PROFILE HERE"
-        android:textStyle="bold"
-        android:textSize="@dimen/_20sdp"
-        android:layout_centerInParent="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+     >
+
+        <com.google.android.material.card.MaterialCardView
+
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card"
+            android:onClick="showmore"
+            app:cardCornerRadius="@dimen/_20sdp"
+            android:backgroundTint="#FFCDD2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_weight="1.5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/circle_white">
+
+                        <TextView
+                            android:layout_margin="@dimen/_10sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FIFA WORLD CUP "
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_16sdp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/playfair_bold"
+
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10 Questions"
+                                android:textStyle="bold"
+                                android:padding="@dimen/_5sdp"
+                                android:background="@drawable/custom_button_bg"
+                                android:layout_margin="@dimen/_5sdp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Difficulty: Easy"
+                                android:textStyle="bold"
+                                android:padding="@dimen/_5sdp"
+                                android:background="@drawable/custom_button_bg"
+                                android:layout_margin="@dimen/_5sdp"/>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight=".5"
+                        android:src="@drawable/cup"
+                        android:scaleType="centerCrop"/>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/expandable_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_150sdp"
+                        android:src="@drawable/fifa"
+                        android:scaleType="centerCrop"/>
+
+
+                    <Button
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="START"
+                        android:backgroundTint="@color/colorAccent"/>
+
+
+
+
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+
+
+
 
 
     <include

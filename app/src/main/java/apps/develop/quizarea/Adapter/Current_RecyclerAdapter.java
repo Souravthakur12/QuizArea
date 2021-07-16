@@ -1,4 +1,4 @@
-package apps.develop.quizarea;
+package apps.develop.quizarea.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,6 +16,9 @@ import com.bumptech.glide.Glide;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+
+import apps.develop.quizarea.Model.LatestData;
+import apps.develop.quizarea.R;
 
 
 public class Current_RecyclerAdapter extends RecyclerView.Adapter<Current_RecyclerAdapter.MyViewHolder> {
