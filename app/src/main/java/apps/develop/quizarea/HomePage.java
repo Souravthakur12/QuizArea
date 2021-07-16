@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +36,7 @@ import java.util.ArrayList;
 import apps.develop.quizarea.Adapter.Current_RecyclerAdapter;
 import apps.develop.quizarea.Adapter.SliderAdapter;
 import apps.develop.quizarea.Model.LatestData;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePage extends AppCompatActivity {
 
@@ -44,6 +51,11 @@ public class HomePage extends AppCompatActivity {
     ShimmerFrameLayout shimmerFrameLayout;
     LinearLayout shimmerlayout;
 
+    FirebaseAuth firebaseAuth;
+
+    CircleImageView circleprofileiv;
+    TextView username,useremail;
+
     LinearLayout cat1,cat2,cat3;
 
     @Override
@@ -52,6 +64,14 @@ public class HomePage extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_home_page);
         db = FirebaseDatabase.getInstance().getReference().child("Images");
+
+
+        username=findViewById(R.id.user_name);
+        useremail=findViewById(R.id.user_email);
+        circleprofileiv=findViewById(R.id.circleImageView);
+
+        firebaseAuth= FirebaseAuth.getInstance();
+        checkUser();
 
         sliderView = findViewById(R.id.slider);
         list = new ArrayList<>();
@@ -123,6 +143,28 @@ public class HomePage extends AppCompatActivity {
 
 
 
+    }
+
+    private void checkUser() {
+        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
+        if(firebaseUser==null){
+            startActivity(new Intent(
+                    HomePage.this,LoginActivity.class));
+        }
+        else{
+            GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
+
+            /*    user_name.setText(account.getDisplayName());*/
+            Glide.with(this).load(account.getPhotoUrl()).into(circleprofileiv);
+
+            String displayName=firebaseUser.getDisplayName();
+
+            String userEmail = firebaseUser.getEmail();
+
+            username.setText("Hi,"+displayName);
+            useremail.setText(userEmail);
+
+        }
     }
 
 
